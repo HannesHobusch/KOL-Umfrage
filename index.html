@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Umfrage: Digitalisierung an Schulen</title>
+  <title>Umfrage:Schulumgebung</title>
   <style>
       body{
           font-famaly: sans-serif;
@@ -15,13 +15,24 @@
           background-color: #ccffcc;
           border: 2px solid #00aa00;
       }
+      .faded{
+          color: #888;
+          font-size: 0.9rem;
+      }
+      .question {
+          display: none;
+      }
+      .question.active {
+          display: block;
+      }
       button {
           padding: 0.5rem 1rem;
           margin-top: 1rem;
       }
-      .small{
-          font-size: 0.8rem;
-          color: #666;
+      .scale-label {
+          display: inline-block;
+          width: 30px;
+          text-align: center;
       }
   </style>
 <script type="text/javascript">
@@ -42,9 +53,35 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
+</head>
+<body>
+    <h1>Kurze Umfrage zur Schulumgebung</h1>
+    <form id="surveyForm">
+        <!-- Snackautomat? -->
+        <div class="question active">
+            <label>Welche Snacks könntest du dir in einem Automaten an der Schule sehen?</label><br />
+            <select required>
+                <option selected> Gesunde Snacks (emfohlen)</option>
+                <option>Süßigkeiten</option>
+                <option>Salzige Snacks</option>
+                <option>Regionale Produkte</option>
+            </select>select<<br />
+              <button type="button" onclick="nextQestion()">Weiter</button>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
 
   
-</head>
+</body>
+</html>
