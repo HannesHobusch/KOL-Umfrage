@@ -55,6 +55,19 @@
 </script>
 </head>
 <body>
+    <script>
+  let current = 0;
+  const questions = document.querySelectorAll(".question");
+
+  function nextQuestion() {
+    if (current < questions.length - 1) {
+      questions[current].classList.remove("active");
+      current++;
+      questions[current].classList.add("active");
+    }
+  }
+</script>
+
     <h1>Kurze Umfrage zur Schulumgebung</h1>
     <form id="surveyForm">
         <!-- Snackautomat? -->
