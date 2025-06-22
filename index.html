@@ -55,8 +55,6 @@
 </script>
 </head>
 <body>
- 
-
     <h1>Kurze Umfrage zur Schulumgebung</h1>
     <form id="surveyForm">
         <!-- Snackautomat? -->
@@ -76,7 +74,7 @@
             <label>Wie sehr denkst du, könnten gesunde Snacks deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
                 <span class="scale-label">1</span>
                 <input type="range" name="konzentration" min="1" max="10" value="5" data-moved="false" />
-                <span class="scalable-label">10</span><br />
+                <span class="scale-label">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
         <div class="question">
             <label>Wie Lange sollte die Mittagspause sein?</label><br />
@@ -109,72 +107,38 @@
         </div>
         <div class="question">
           <label>Wie Sicher Fühlst du dich auf deinem Schulweg?</label><br />
-            <span class="scale-lable">1</span>
+            <span class="scale-label">1</span>
             <input type="range" name="sicherheit" min="1" max="10" value="5" data-moved="false" />
-            <span class="scale-lable">10</span><br />
+            <span class="scale-label">10</span><br />
             <small> 1 = unsicher, 10 = sehr sicher</small><br />
                     <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
           <p>Vielen Dank für deine Teilnahme!</p>
           <p class="faded">Diese Umfrage ist Teil meines Schulprojektes Zum Thema Dark Patterns.</p>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
+        </div>      
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
      <script>
   let current = 0;
   const questions = document.querySelectorAll(".question");
 
   function nextQuestion() {
-    const currentElement = question[current];
+    const currentElement = questions[current];
     const select = currentElement.querySelector("select");
     if (select && select.value === "") {
       alert("Bitte wähle eine Option aus.");
       return;
     }
-    const range = currentElement.querySelector("input[type='range']");
-    if (range && (range.value === "" || range.value == null)) {
-      alert("Bitte bewege den Regler.");
-      return;
-    }
+   const range = currentElement.querySelector("input[type='range']");
+if (range && range.dataset.moved !== "true") {
+  alert("Bitte bewege den Regler.");
+  return;
+}
+
+  
     if (currentElement.querySelectorAll(".answer").length && ! currentElement.dataset.answered)
     {alert("Bitte wähle eine Option aus.");
-     return;
+     return;}
     if (current < questions.length - 1) {
       questions[current].classList.remove("active");
       current++;
@@ -192,7 +156,12 @@
       parent.dataset.answered = "true";
       nextQuestion();
     }
-    document.querySelectorAll('input[type="range"]').forEach r => r.addEventListener('input',() => r.dataset.moved = "true"));
+   document.querySelectorAll('input[type="range"]').forEach(r => 
+  r.addEventListener('input', () => {
+    r.dataset.moved = "true";
+  })
+);
+
 </script>
 </body>
 </html>
