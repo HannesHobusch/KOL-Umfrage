@@ -183,5 +183,44 @@ questions.forEach(q => {
   attachRangeListener(range);
 });
 </script>
+  <script>
+function showCookiePopup() {
+    if (!localStorage.getItem("cookieAccepted")) {
+        document.getElementById("cookie-popup").style.display = "block";
+    }
+}
+function acceptCookies() {
+    localStorage.setItem("cookieAccepted", "true");
+    document.getElementById("cookie-popup").style.display = "none";
+}
+window.onload = showCookiePopup;
+</script>
+  <div id="cookie-popup" style="
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    background: #fffbe7;
+    border: 1px solid #bfa500;
+    color: #514200;
+    padding: 1.5rem 1rem 1rem 1rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-size: 1rem;
+    display: none;
+">
+    <strong>Hinweis zur Datenerfassung:</strong><br>
+    Zu Analysezwecken wird jede deiner Bewegungen auf dieser Seite erfasst und ausgewertet. Dies unterstützt meiner Komplexen Leistung. :)<br>
+    <button onclick="acceptCookies()" style="
+        margin-top: 1rem;
+        background: #ffe066;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    ">Verstanden</button>
+</div>
 </body>
 </html>
