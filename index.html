@@ -77,7 +77,65 @@
                 <input type="range" name="konzentration" min="1" max="10" value="10" />
                 <span class="scalable-label">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
+        <div class="question">
+            <lable>Wie Lange sollte die Mittagspause sein?</lable><br />
+            <select required>
+                <option>30 min</option>
+                <option selected>40 min</option>
+                <option>45 min</option>
+                <option>50 min</option>
+            </select>select><br />
+             <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
 
+        <div class="question"
+          <lable>Würdest du lieber Kürzere Pausen haben, wenn der Schultag dadurch früher endet?</lable><br />
+            <button type="button" class="highlighted" onclick="nextQuestion()">Ja, klingt Gut!</button>
+            <button type="button" class="faded" onclick="nextQuestion()">Nein, Pausen sind Wichtig!</button>  
+                  <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
+        
+        <div class="question">
+          <lable> Wie kommst du normalerweise zur Schule?</lable><br /><select required>
+            <option selected>Zu Fuß</option>
+            <option>Mit dem Fahrrad</option>
+            <option>Mit dem Bus</option>
+            <option> Mit dem Auto</option>
+          </select><br />
+                  <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
+        <div class="question">
+          <lable>Wie Sicher Fühlst du dich auf deinem Schulweg?</lable><br />
+            <span class="scale-lable">1</span>
+            <input type="range" name="sicherheit" min="1" min="10" value="6" />
+            <span class="scale-lable">10</span>span><br />
+            <small> 1 = unsicher, 10 = sehr sicher</small><br />
+                    <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
     </form>
 
 
