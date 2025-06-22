@@ -71,46 +71,49 @@
         </div>
 
         <div class="question">
-            <label>Wie sehr denkst du, könnten gesunde Snacks deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
-                <span class="scale-label">1</span>
-                <input type="range" name="konzentration" min="1" max="10" value="5" data-moved="false" />
-                <span class="scale-label">10</span><br />
+            <label>Wie sehr bist du davon überzeugt, dass gesunde Snacks deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
+                <span class="scale-label faded">1</span>
+                <input type="range" name="konzentration" min="1" max="10" value="8" data-moved="false" />
+                <span class="scale-label highlighted">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
         <div class="question">
             <label>Wie Lange sollte die Mittagspause sein?</label><br />
-            <select required>
-                <option value="" disabled selected hidden> Bitte auswählen</option>
-                <option value="30">30 min</option>
-                <option value="40">40 min</option>
-                <option value="45">45 min</option>
-                <option value="50">50 min</option>
-            </select><br />
+           <select required>
+  <option value="" disabled hidden>Bitte auswählen</option>
+  <option value="30" selected style="background:#e0ffe0;">30 min (empfohlen)</option>
+  <option value="40">40 min</option>
+  <option value="45">45 min</option>
+  <option value="50">50 min</option>
+</select><br />
              <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
 
         <div class="question">
-          <label>Würdest du lieber Kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
-            <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt Gut!</button>
-            <button type="button" class="faded answer" onclick="markAnswered(this)">Nein, Pausen sind Wichtig!</button>  
-                 
-        </div>
+  <label>Würdest du lieber Kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
+  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt Gut!</button>
+  <span id="reveal" style="display:inline-block;">
+    <a href="#" onclick="document.getElementById('no-btn').style.display='inline'; this.style.display='none'; return false;" style="margin-left:1em; font-size:0.9em;">Weitere Optionen anzeigen</a>
+  </span>
+  <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein, Pausen sind Wichtig!</button>
+</div>
         
         <div class="question">
-          <label> Wie kommst du normalerweise zur Schule?</label><br /><select required>
+          <label> Wie kommst du normalerweise durch Rochlitz?</label><br /><select required>
             <option value="" disabled selected hidden>Bitte auswählen</option>
-            <option value="fuss">Zu Fuß</option>
-            <option value="ras">Mit dem Fahrrad</option>
+            <option value="fuss">Zu Fuß (sehr Gesund)</option>
+            <option value="ras">Mit dem Fahrrad (sehr Gesund)</option>
             <option value="bus">Mit dem Bus</option>
             <option value="auto"> Mit dem Auto</option>
           </select><br />
                   <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
-          <label>Wie Sicher Fühlst du dich auf deinem Schulweg?</label><br />
-            <span class="scale-label">1</span>
+          <label>Du fühlst dich sicher auf deinem Schulweg, oder?</label><br />
+            <span class="scale-label faded">1</span>
             <input type="range" name="sicherheit" min="1" max="10" value="5" data-moved="false" />
-            <span class="scale-label">10</span><br />
+            <span class="scale-label highlighted">10</span><br />
             <small> 1 = unsicher, 10 = sehr sicher</small><br />
+            <small>Die meisen Kinder fühlen sich sicher.</small>
                     <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
