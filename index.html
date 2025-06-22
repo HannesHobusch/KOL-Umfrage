@@ -118,7 +118,7 @@
           <p class="faded">Diese Umfrage ist Teil meines Schulprojektes Zum Thema Dark Patterns.</p>
         </div>      
     </form>
-     <script>
+  <script>
   let current = 0;
   const questions = document.querySelectorAll(".question");
 
@@ -129,39 +129,53 @@
       alert("Bitte wähle eine Option aus.");
       return;
     }
-   const range = currentElement.querySelector("input[type='range']");
-if (range && range.dataset.moved !== "true") {
-  alert("Bitte bewege den Regler.");
-  return;
-}
-
-  
-    if (currentElement.querySelectorAll(".answer").length && ! currentElement.dataset.answered)
-    {alert("Bitte wähle eine Option aus.");
-     return;}
+    const range = currentElement.querySelector("input[type='range']");
+    if (range && range.dataset.moved !== "true") {
+      alert("Bitte bewege den Regler.");
+      return;
+    }
+    if (
+      currentElement.querySelectorAll(".answer").length &&
+      !currentElement.dataset.answered
+    ) {
+      alert("Bitte wähle eine Option aus.");
+      return;
+    }
     if (current < questions.length - 1) {
       questions[current].classList.remove("active");
       current++;
       questions[current].classList.add("active");
+
+      // Attach range event listener for the new question
+      const newRange = questions[current].querySelector("input[type='range']");
+      if (newRange) {
+        newRange.addEventListener("input", () => {
+          newRange.dataset.moved = "true";
+        });
+      }
+
       if (typeof clarity === "function") {
-        clarity('set','section','frage_' + current);
+        clarity("set", "section", "frage_" + current);
       }
       if (typeof hj === "function") {
-        hj('stateChange', '/umfrage/frage_' + current);
+        hj("stateChange", "/umfrage/frage_" + current);
       }
     }
   }
-    function markAnswered(button){
-      const parent = button.closest(".question");
-      parent.dataset.answered = "true";
-      nextQuestion();
-    }
-   document.querySelectorAll('input[type="range"]').forEach(r => 
-  r.addEventListener('input', () => {
-    r.dataset.moved = "true";
-  })
-);
 
+  function markAnswered(button) {
+    const parent = button.closest(".question");
+    parent.dataset.answered = "true";
+    nextQuestion();
+  }
+
+  // Attach range event for the first visible question at start
+  const firstRange = questions[0].querySelector("input[type='range']");
+  if (firstRange) {
+    firstRange.addEventListener("input", () => {
+      firstRange.dataset.moved = "true";
+    });
+  }
 </script>
 </body>
 </html>
