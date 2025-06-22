@@ -63,11 +63,11 @@
         <div class="question active">
             <label>Welche Snacks könntest du dir in einem Automaten an der Schule sehen?</label><br />
             <select required>
-                <option value="" disable selected hidden> Bitte auswählen </option>
-                <option selected> Gesunde Snacks (emfohlen)</option>
-                <option>Süßigkeiten</option>
-                <option>Salzige Snacks</option>
-                <option>Regionale Produkte</option>
+                <option value="" disabled selected hidden> Bitte auswählen </option>
+                <option value="gesund"> Gesunde Snacks (emfohlen)</option>
+                <option value="suess">Süßigkeiten</option>
+                <option value="salzig">Salzige Snacks</option>
+                <option value="regional">Regionale Produkte</option>
             </select><br />
               <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
@@ -75,40 +75,42 @@
         <div class="question">
             <label>Wie sehr denkst du, könnten gesunde Snacks deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
                 <span class="scale-label">1</span>
-                <input type="range" name="konzentration" min="1" max="10" value="10" />
+                <input type="range" name="konzentration" min="1" max="10" value="5" data-moved="false" />
                 <span class="scalable-label">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
         <div class="question">
-            <lable>Wie Lange sollte die Mittagspause sein?</lable><br />
+            <label>Wie Lange sollte die Mittagspause sein?</label><br />
             <select required>
-                <option>30 min</option>
-                <option selected>40 min</option>
-                <option>45 min</option>
-                <option>50 min</option>
+                <option value="" disabled selected hidden> Bitte auswählen</option>
+                <option value="30">30 min</option>
+                <option value="40">40 min</option>
+                <option value="45">45 min</option>
+                <option value="50">50 min</option>
             </select><br />
              <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
 
-        <div class="question"
-          <lable>Würdest du lieber Kürzere Pausen haben, wenn der Schultag dadurch früher endet?</lable><br />
-            <button type="button" class="highlighted" onclick="nextQuestion()">Ja, klingt Gut!</button>
-            <button type="button" class="faded" onclick="nextQuestion()">Nein, Pausen sind Wichtig!</button>  
-                  <button type="button" onclick="nextQuestion()">Weiter</button>
+        <div class="question">
+          <label>Würdest du lieber Kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
+            <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt Gut!</button>
+            <button type="button" class="faded answer" onclick="markAnswered(this)">Nein, Pausen sind Wichtig!</button>  
+                 
         </div>
         
         <div class="question">
-          <lable> Wie kommst du normalerweise zur Schule?</lable><br /><select required>
-            <option selected>Zu Fuß</option>
-            <option>Mit dem Fahrrad</option>
-            <option>Mit dem Bus</option>
-            <option> Mit dem Auto</option>
+          <label> Wie kommst du normalerweise zur Schule?</label><br /><select required>
+            <option value="" disabled selected hidden>Bitte auswählen</option>
+            <option value="fuss">Zu Fuß</option>
+            <option value="ras">Mit dem Fahrrad</option>
+            <option value="bus">Mit dem Bus</option>
+            <option value="auto"> Mit dem Auto</option>
           </select><br />
                   <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
-          <lable>Wie Sicher Fühlst du dich auf deinem Schulweg?</lable><br />
+          <label>Wie Sicher Fühlst du dich auf deinem Schulweg?</label><br />
             <span class="scale-lable">1</span>
-            <input type="range" name="sicherheit" min="1" min="10" value="8" />
+            <input type="range" name="sicherheit" min="1" max="10" value="5" data-moved="false" />
             <span class="scale-lable">10</span><br />
             <small> 1 = unsicher, 10 = sehr sicher</small><br />
                     <button type="button" onclick="nextQuestion()">Weiter</button>
@@ -162,7 +164,7 @@
     const currentElement = question[current];
     const select = currentElement.querySelector("select");
     if (select && select.value === "") {
-      alert("Bitte wähleeine Option aus.");
+      alert("Bitte wähle eine Option aus.");
       return;
     }
     const range = currentElement.querySelector("input[type='range']");
@@ -170,6 +172,9 @@
       alert("Bitte bewege den Regler.");
       return;
     }
+    if (currentElement.querySelectorAll(".answer").length && ! currentElement.dataset.answered)
+    {alert("Bitte wähle eine Option aus.");
+     return;
     if (current < questions.length - 1) {
       questions[current].classList.remove("active");
       current++;
@@ -182,6 +187,12 @@
       }
     }
   }
+    function markAnswered(button){
+      const parent = button.closest(".question");
+      parent.dataset.answered = "true";
+      nextQuestion();
+    }
+    document.querySelectorAll('input[type="range"]').forEach r => r.addEventListener('input',() => r.dataset.moved = "true"));
 </script>
 </body>
 </html>
