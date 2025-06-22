@@ -118,64 +118,70 @@
           <p class="faded">Diese Umfrage ist Teil meines Schulprojektes Zum Thema Dark Patterns.</p>
         </div>      
     </form>
-  <script>
-  let current = 0;
-  const questions = document.querySelectorAll(".question");
+<script>
+let current = 0;
+const questions = document.querySelectorAll(".question");
 
-  function nextQuestion() {
-    const currentElement = questions[current];
-    const select = currentElement.querySelector("select");
-    if (select && select.value === "") {
-      alert("Bitte wähle eine Option aus.");
-      return;
-    }
-    const range = currentElement.querySelector("input[type='range']");
-    if (range && range.dataset.moved !== "true") {
-      alert("Bitte bewege den Regler.");
-      return;
-    }
-    if (
-      currentElement.querySelectorAll(".answer").length &&
-      !currentElement.dataset.answered
-    ) {
-      alert("Bitte wähle eine Option aus.");
-      return;
-    }
-    if (current < questions.length - 1) {
-      questions[current].classList.remove("active");
-      current++;
-      questions[current].classList.add("active");
+function attachRangeListener(element) {
+  if (element) {
+    element.addEventListener("input", () => {
+      element.dataset.moved = "true";
+    }, { once: true }); // Only attach once!
+  }
+}
 
-      // Attach range event listener for the new question
-      const newRange = questions[current].querySelector("input[type='range']");
-      if (newRange) {
-        newRange.addEventListener("input", () => {
-          newRange.dataset.moved = "true";
-        });
-      }
+function nextQuestion() {
+  const currentElement = questions[current];
+  const select = currentElement.querySelector("select");
+  if (select && !select.value) {
+    alert("Bitte wähle eine Option aus.");
+    return;
+  }
+  const range = currentElement.querySelector("input[type='range']");
+  if (range && range.dataset.moved !== "true") {
+    alert("Bitte bewege den Regler.");
+    return;
+  }
+  if (
+    currentElement.querySelectorAll(".answer").length &&
+    !currentElement.dataset.answered
+  ) {
+    alert("Bitte wähle eine Option aus.");
+    return;
+  }
+  if (current < questions.length - 1) {
+    questions[current].classList.remove("active");
+    current++;
+    questions[current].classList.add("active");
 
-      if (typeof clarity === "function") {
-        clarity("set", "section", "frage_" + current);
-      }
-      if (typeof hj === "function") {
-        hj("stateChange", "/umfrage/frage_" + current);
-      }
+    // Attach range event listener for any range slider in the new question
+    const newRange = questions[current].querySelector("input[type='range']");
+    attachRangeListener(newRange);
+
+    // Optional: Scroll to top for mobile users
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Analytics (your code)
+    if (typeof clarity === "function") {
+      clarity("set", "section", "frage_" + current);
+    }
+    if (typeof hj === "function") {
+      hj("stateChange", "/umfrage/frage_" + current);
     }
   }
+}
 
-  function markAnswered(button) {
-    const parent = button.closest(".question");
-    parent.dataset.answered = "true";
-    nextQuestion();
-  }
+function markAnswered(button) {
+  const parent = button.closest(".question");
+  parent.dataset.answered = "true";
+  nextQuestion();
+}
 
-  // Attach range event for the first visible question at start
-  const firstRange = questions[0].querySelector("input[type='range']");
-  if (firstRange) {
-    firstRange.addEventListener("input", () => {
-      firstRange.dataset.moved = "true";
-    });
-  }
+// Attach range event for all questions with a range slider at start
+questions.forEach(q => {
+  const range = q.querySelector("input[type='range']");
+  attachRangeListener(range);
+});
 </script>
 </body>
 </html>
