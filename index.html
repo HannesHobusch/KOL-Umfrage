@@ -62,7 +62,7 @@
             <label>Welche Snacks könntest du dir in einem Automaten an der Schule sehen?</label><br />
             <select required>
                 <option value="" disabled selected hidden> Bitte auswählen </option>
-                <option value="gesund"> Gesunde Snacks (emfohlen)</option>
+                <option value="gesund"> Gesunde Snacks (empfohlen)</option>
                 <option value="suess">Süßigkeiten</option>
                 <option value="salzig">Salzige Snacks</option>
                 <option value="regional">Regionale Produkte</option>
@@ -77,31 +77,31 @@
                 <span class="scale-label highlighted">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
         <div class="question">
-            <label>Wie Lange sollte die Mittagspause sein?</label><br />
+            <label>Wie lange sollte die Mittagspause sein?</label><br />
            <select required>
   <option value="" disabled hidden>Bitte auswählen</option>
-  <option value="30" selected style="background:#e0ffe0;">30 min (empfohlen)</option>
-  <option value="40">40 min</option>
-  <option value="45">45 min</option>
-  <option value="50">50 min</option>
+  <option value="30" selected style="background:#e0ffe0;">30 min. (empfohlen)</option>
+  <option value="40">40 min.</option>
+  <option value="45">45 min.</option>
+  <option value="50">50 min.</option>
 </select><br />
              <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
 
         <div class="question">
-  <label>Würdest du lieber Kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
-  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt Gut!</button>
+  <label>Würdest du lieber kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
+  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt gut!</button>
   <span id="reveal" style="display:inline-block;">
     <a href="#" onclick="document.getElementById('no-btn').style.display='inline'; this.style.display='none'; return false;" style="margin-left:1em; font-size:0.9em;">Weitere Optionen anzeigen</a>
   </span>
-  <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein, Pausen sind Wichtig!</button>
+  <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein, Pausen sind wichtig!</button>
 </div>
         
         <div class="question">
           <label> Wie kommst du normalerweise durch Rochlitz?</label><br /><select required>
             <option value="" disabled selected hidden>Bitte auswählen</option>
-            <option value="fuss">Zu Fuß (sehr Gesund)</option>
-            <option value="ras">Mit dem Fahrrad (sehr Gesund)</option>
+            <option value="fuss">Zu Fuß (sehr gesund)</option>
+            <option value="ras">Mit dem Fahrrad (sehr gesund)</option>
             <option value="bus">Mit dem Bus</option>
             <option value="auto"> Mit dem Auto</option>
           </select><br />
@@ -113,12 +113,12 @@
             <input type="range" name="sicherheit" min="1" max="10" value="5" data-moved="false" />
             <span class="scale-label highlighted">10</span><br />
             <small> 1 = unsicher, 10 = sehr sicher</small><br />
-            <small>Die meisen Kinder fühlen sich sicher.</small>
+            <small>Die meisten Kinder fühlen sich sicher.</small>
                     <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
           <p>Vielen Dank für deine Teilnahme!</p>
-          <p class="faded">Diese Umfrage ist Teil meines Schulprojektes Zum Thema Dark Patterns.</p>
+          <p class="faded">Diese Umfrage ist Teil meines Schulprojektes zum Thema Dark Patterns.</p>
         </div>      
     </form>
 <script>
@@ -212,7 +212,7 @@ window.onload = showCookiePopup;
     display: none;
 ">
     <strong>Hinweis zur Datenerfassung:</strong><br>
-    Zu Analysezwecken wird jede deiner Bewegungen auf dieser Seite erfasst und ausgewertet. Dies unterstützt meine Komplexen Leistung. :)<br>
+    Zu Analysezwecken wird jede deiner Bewegungen auf dieser Seite erfasst und ausgewertet. Dies unterstützt meine komplexe Leistung. :)<br>
     <button onclick="acceptCookies()" style="
         margin-top: 1rem;
         background: #ffe066;
