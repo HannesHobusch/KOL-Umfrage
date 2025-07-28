@@ -226,6 +226,20 @@ questions.forEach(q => {
   attachRangeListener(range);
 });
 </script>
+  <script>
+// Cookie-Banner anzeigen, wenn noch nicht akzeptiert
+window.addEventListener('load', function () {
+  if (!localStorage.getItem('cookiesAccepted')) {
+    document.getElementById('cookie-popup').style.display = 'block';
+  }
+});
+
+function acceptCookies() {
+  localStorage.setItem('cookiesAccepted', 'true');
+  document.getElementById('cookie-popup').style.display = 'none';
+}
+</script>
+
 
   <div id="cookie-popup" style="
     position: fixed;
