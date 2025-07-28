@@ -201,7 +201,7 @@ function nextQuestion() {
 
     // Wenn letzte Frage: sende an Google Sheets
     if (current === questions.length - 1) {
-      fetch("https://script.google.com/macros/s/AKfycbziFX1cuqvF4uPOPXJREgTVZVj6ijEfhnuMfriMTQEUQYYZ7NPZsOKh30QD8TKmxyo/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxysR2tz3pShZ2LMKJ8ejGqqbhFAGc5ErwMxn_oRo-wsqCkHQOR4J6CQtzO_1XLOltJ/exec", {
         method: "POST",
         body: JSON.stringify(answers),
         headers: {
