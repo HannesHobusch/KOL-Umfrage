@@ -125,77 +125,108 @@
 let current = 0;
 const questions = document.querySelectorAll(".question");
 
+const answers = {
+  snack: "",
+  konzentration: "",
+  mittagspause: "",
+  pausenwahl: "",
+  schulweg: "",
+  sicherheit: ""
+};
+
 function attachRangeListener(element) {
   if (element) {
     element.addEventListener("input", () => {
       element.dataset.moved = "true";
-    }, { once: true }); // Only attach once!
+    }, { once: true });
   }
 }
 
 function nextQuestion() {
   const currentElement = questions[current];
+
+  // Validierung
   const select = currentElement.querySelector("select");
   if (select && !select.value) {
     alert("Bitte wähle eine Option aus.");
     return;
   }
+
   const range = currentElement.querySelector("input[type='range']");
   if (range && range.dataset.moved !== "true") {
     alert("Bitte bewege den Regler.");
     return;
   }
-  if (
-    currentElement.querySelectorAll(".answer").length &&
-    !currentElement.dataset.answered
-  ) {
+
+  if (currentElement.querySelectorAll(".answer").length && !currentElement.dataset.answered) {
     alert("Bitte wähle eine Option aus.");
     return;
   }
+
+  // Antworten speichern
+  if (select) {
+    if (current === 0) answers.snack = select.value;
+    if (current === 2) answers.mittagspause = select.value;
+    if (current === 4) answers.schulweg = select.value;
+  }
+
+  if (range) {
+    if (current === 1) answers.konzentration = range.value;
+    if (current === 5) answers.sicherheit = range.value;
+  }
+
+  if (current === 3 && currentElement.dataset.answered) {
+    const selectedBtn = currentElement.querySelector("[data-selected='true']");
+    if (selectedBtn) answers.pausenwahl = selectedBtn.textContent;
+  }
+
+  // Weiter zur nächsten Frage
   if (current < questions.length - 1) {
     questions[current].classList.remove("active");
     current++;
     questions[current].classList.add("active");
 
-    // Attach range event listener for any range slider in the new question
     const newRange = questions[current].querySelector("input[type='range']");
     attachRangeListener(newRange);
 
-    // Optional: Scroll to top for mobile users
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Analytics (your code)
+    // Clarity & Hotjar
     if (typeof clarity === "function") {
       clarity("set", "section", "frage_" + current);
     }
     if (typeof hj === "function") {
       hj("stateChange", "/umfrage/frage_" + current);
     }
+
+    // Wenn letzte Frage: sende an Google Sheets
+    if (current === questions.length - 1) {
+      fetch("https://script.google.com/macros/s/AKfycbziFX1cuqvF4uPOPXJREgTVZVj6ijEfhnuMfriMTQEUQYYZ7NPZsOKh30QD8TKmxyo/exec", {
+        method: "POST",
+        body: JSON.stringify(answers),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => console.log("Gesendet!", res));
+    }
   }
 }
 
-function markAnswered(button) {
+function markAnswered(button){
   const parent = button.closest(".question");
   parent.dataset.answered = "true";
+  parent.querySelectorAll(".answer").forEach(btn => btn.removeAttribute("data-selected"));
+  button.setAttribute("data-selected", "true");
   nextQuestion();
 }
 
-// Attach range event for all questions with a range slider at start
+// Initiale Range-Listener setzen
 questions.forEach(q => {
   const range = q.querySelector("input[type='range']");
   attachRangeListener(range);
 });
-function showCookiePopup() {
-    if (!localStorage.getItem("cookieAccepted")) {
-        document.getElementById("cookie-popup").style.display = "block";
-    }
-}
-function acceptCookies() {
-    localStorage.setItem("cookieAccepted", "true");
-    document.getElementById("cookie-popup").style.display = "none";
-}
-window.onload = showCookiePopup;
 </script>
+
   <div id="cookie-popup" style="
     position: fixed;
     bottom: 20px;
