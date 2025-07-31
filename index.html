@@ -228,50 +228,31 @@ function acceptCookies() {
   localStorage.setItem('cookiesAccepted', 'true');
   document.getElementById('cookie-popup').style.display = 'none';
 }
+    fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: new URLSearchParams({
+    snack: "Chips",
+    konzentration: "8",
+    mittagspause: "Spiele spielen",
+    pausenwahl: "Längere Pause",
+    schulweg: "Fahrrad",
+    sicherheit: "7"
+  }).toString()
+})
+.then(response => response.text())
+.then(result => {
+  console.log("Erfolg:", result);
+})
+.catch(error => {
+  console.error("Fehler:", error);
+});
+
 </script>
 
-  <form 
-  method="POST" 
-  action="https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec"
->
-  <!-- Frage 1: Snack -->
-  <label>Welche Snacks könntest du dir in einem Automaten an der Schule vorstellen?</label><br />
-  <select name="snack" required>
-    <option value="" disabled selected>Bitte wählen</option>
-    <option>Gesunde Snacks (empfohlen)</option>
-    <option>Süßigkeiten</option>
-    <option>Salzige Snacks</option>
-    <option>Regionale Produkte</option>
-  </select><br />
 
-  <!-- Frage 2: Konzentration -->
-  <label>Wie sehr könnten gesunde Snacks deine Konzentration erhöhen? (1=Kaum, 10=Sehr)</label><br />
-  <input type="range" name="konzentration" min="1" max="10" required><br />
-
-  <!-- Frage 3: Mittagspause -->
-  <label>Wie verbringst du am liebsten deine Mittagspause?</label><br />
-  <input type="text" name="mittagspause" required><br />
-
-  <!-- Frage 4: Pausenwahl -->
-  <label>Welche Art von Pause ist dir wichtiger?</label><br />
-  <select name="pausenwahl" required>
-    <option value="" disabled selected>Bitte wählen</option>
-    <option>Kreative Pause</option>
-    <option>Bewegung</option>
-    <option>Ruhezeit</option>
-    <option>Snackpause</option>
-  </select><br />
-
-  <!-- Frage 5: Schulweg -->
-  <label>Wie kommst du zur Schule?</label><br />
-  <input type="text" name="schulweg" required><br />
-
-  <!-- Frage 6: Sicherheit -->
-  <label>Wie sicher fühlst du dich auf deinem Schulweg? (1=Unsicher, 10=Sehr sicher)</label><br />
-  <input type="range" name="sicherheit" min="1" max="10" required><br />
-
-  <button type="submit">Absenden</button>
-</form>
 
 
   <div id="cookie-popup" style="
