@@ -234,12 +234,12 @@ function acceptCookies() {
     "Content-Type": "application/x-www-form-urlencoded"
   },
   body: new URLSearchParams({
-    snack: "Chips",
-    konzentration: "8",
-    mittagspause: "Spiele spielen",
-    pausenwahl: "Längere Pause",
-    schulweg: "Fahrrad",
-    sicherheit: "7"
+    snack: "",
+    konzentration: "",
+    mittagspause: "",
+    pausenwahl: "",
+    schulweg: "",
+    sicherheit: ""
   }).toString()
 })
 .then(response => response.text())
