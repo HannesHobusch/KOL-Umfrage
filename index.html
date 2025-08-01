@@ -66,6 +66,7 @@
                 <option value="suess">Süßigkeiten</option>
                 <option value="salzig">Salzige Snacks</option>
                 <option value="regional">Regionale Produkte</option>
+             
             </select><br />
               <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
@@ -84,6 +85,7 @@
   <option value="40">40 min.</option>
   <option value="45">45 min.</option>
   <option value="50">50 min.</option>
+       
 </select><br />
              <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
@@ -95,6 +97,7 @@
     <a href="#" onclick="document.getElementById('no-btn').style.display='inline'; this.style.display='none'; return false;" style="margin-left:1em; font-size:0.9em;">Weitere Optionen anzeigen</a>
   </span>
   <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein, Pausen sind wichtig!</button>
+        
 </div>
         
         <div class="question">
@@ -104,6 +107,7 @@
             <option value="ras">Mit dem Fahrrad (sehr gesund)</option>
             <option value="bus">Mit dem Bus</option>
             <option value="auto"> Mit dem Auto</option>
+          
           </select><br />
                   <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
@@ -115,6 +119,7 @@
             <small> 1 = unsicher, 10 = sehr sicher</small><br />
             <small>Die meisten Kinder fühlen sich sicher.</small>
                     <button type="button" onclick="nextQuestion()">Weiter</button>
+         
         </div>
         <div class="question">
           <p>Vielen Dank für deine Teilnahme!</p>
@@ -198,23 +203,13 @@ function nextQuestion() {
       hj("stateChange", "/umfrage/frage_" + current);
     }
 
-   
+    if (current === questions.length - 1) {
+     sendAnswers(); // Jetzt Daten absenden
+    }
+
 }
 }
-   fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: new URLSearchParams({
-    snack: "",
-    konzentration: "answers.snack",
-    mittagspause: "answers.kozentration",
-    pausenwahl: "answers.mittagspause",
-    schulweg: "answers.schulweg",
-    sicherheit: "answers.sicherheit"
-  }).toString()
-})
+ 
 function markAnswered(button){
 
   const parent = button.closest(".question");
@@ -250,7 +245,20 @@ function acceptCookies() {
 .catch(error => {
   console.error("Fehler:", error);
 });
-
+  fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: new URLSearchParams({
+    snack: "",
+    konzentration: answers.snack,
+    mittagspause: answers.kozentration,
+    pausenwahl: answers.mittagspause,
+    schulweg: answers.schulweg,
+    sicherheit: answers.sicherheit
+  }).toString()
+})
 </script>
 
 
