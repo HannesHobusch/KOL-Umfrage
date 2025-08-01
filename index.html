@@ -235,11 +235,11 @@ function acceptCookies() {
   },
   body: new URLSearchParams({
     snack: "",
-    konzentration: "",
-    mittagspause: "",
-    pausenwahl: "",
-    schulweg: "",
-    sicherheit: ""
+    konzentration: "answers.snack",
+    mittagspause: "answers.kozentration",
+    pausenwahl: "answers.mittagspause",
+    schulweg: "answers.schulweg",
+    sicherheit: "answers.sicherheit"
   }).toString()
 })
 .then(response => response.text())
