@@ -238,13 +238,7 @@ function acceptCookies() {
   document.getElementById('cookie-popup').style.display = 'none';
 }
    
-.then(response => response.text())
-.then(result => {
-  console.log("Erfolg:", result);
-})
-.catch(error => {
-  console.error("Fehler:", error);
-});
+
     function sendAnswers(){
   fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
   method: "POST",
@@ -252,10 +246,10 @@ function acceptCookies() {
     "Content-Type": "application/x-www-form-urlencoded"
   },
   body: new URLSearchParams({
-    snack: "",
-    konzentration: answers.snack,
-    mittagspause: answers.kozentration,
-    pausenwahl: answers.mittagspause,
+    snack: answers.snack,
+    konzentration: answers.kozentration,
+    mittagspause: answers.mittagspause,
+    pausenwahl: answers.pausenwahl,
     schulweg: answers.schulweg,
     sicherheit: answers.sicherheit
   }).toString()
