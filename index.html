@@ -201,6 +201,20 @@ function nextQuestion() {
    
 }
 }
+   fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: new URLSearchParams({
+    snack: "",
+    konzentration: "answers.snack",
+    mittagspause: "answers.kozentration",
+    pausenwahl: "answers.mittagspause",
+    schulweg: "answers.schulweg",
+    sicherheit: "answers.sicherheit"
+  }).toString()
+})
 function markAnswered(button){
 
   const parent = button.closest(".question");
@@ -228,20 +242,7 @@ function acceptCookies() {
   localStorage.setItem('cookiesAccepted', 'true');
   document.getElementById('cookie-popup').style.display = 'none';
 }
-    fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: new URLSearchParams({
-    snack: "",
-    konzentration: "answers.snack",
-    mittagspause: "answers.kozentration",
-    pausenwahl: "answers.mittagspause",
-    schulweg: "answers.schulweg",
-    sicherheit: "answers.sicherheit"
-  }).toString()
-})
+   
 .then(response => response.text())
 .then(result => {
   console.log("Erfolg:", result);
