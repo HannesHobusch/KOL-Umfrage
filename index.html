@@ -1,130 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Umfrage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Umfrage:Schulumgebung</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
-    .frage { margin-bottom: 20px; }
-    label { display: block; margin-bottom: 5px; font-weight: bold; }
-    input[type="text"], textarea {
-      width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #4CAF50; color: white;
-      border: none; border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background-color: #45a049; }
-    #ergebnis { margin-top: 20px; font-weight: bold; }
-    #cookie-banner {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background-color: #333; color: white;
-      padding: 15px; text-align: center;
-      display: none;
-    }
-    #cookie-banner button {
-      background-color: #4CAF50; color: white;
-      border: none; padding: 10px;
-      margin-left: 20px; border-radius: 4px;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Schülerumfrage</h1>
-
-  <form id="umfrageForm">
-    <div class="frage">
-      <label for="snack">Was snackst du gerne?</label>
-      <input type="text" id="snack" name="snack" required>
-    </div>
-
-    <div class="frage">
-      <label for="konzentration">Wie gut kannst du dich konzentrieren?</label>
-      <input type="text" id="konzentration" name="konzentration" required>
-    </div>
-
-    <div class="frage">
-      <label for="mittagspause">Wie verbringst du deine Mittagspause?</label>
-      <input type="text" id="mittagspause" name="mittagspause" required>
-    </div>
-
-    <div class="frage">
-      <label for="pausenwahl">Was machst du in der Pause?</label>
-      <input type="text" id="pausenwahl" name="pausenwahl" required>
-    </div>
-
-    <div class="frage">
-      <label for="schulweg">Wie kommst du zur Schule?</label>
-      <input type="text" id="schulweg" name="schulweg" required>
-    </div>
-
-    <div class="frage">
-      <label for="sicherheit">Fühlst du dich auf dem Schulweg sicher?</label>
-      <input type="text" id="sicherheit" name="sicherheit" required>
-    </div>
-
-    <button type="submit">Absenden</button>
-  </form>
-
-  <div id="ergebnis"></div>
-
-  <!-- Cookie Banner -->
-  <div id="cookie-banner">
-    Diese Website verwendet Cookies für Analysezwecke.
-    <button onclick="akzeptiereCookies()">Verstanden</button>
-  </div>
-
-  <!-- JS zum Absenden + Cookie-Banner -->
-  <script>
-    // Cookie-Banner anzeigen, wenn noch nicht akzeptiert
-    window.onload = function () {
-      if (!localStorage.getItem('cookiesAccepted')) {
-        document.getElementById('cookie-banner').style.display = 'block';
+      body{
+          font-family: sans-serif;
+          max-width: 600px;
+          margin: auto;
+          padding: 2rem;
       }
-    }
-
-    function akzeptiereCookies() {
-      localStorage.setItem('cookiesAccepted', 'true');
-      document.getElementById('cookie-banner').style.display = 'none';
-    }
-
-    // Formular absenden
-    document.getElementById("umfrageForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const formData = new URLSearchParams();
-
-      formData.append("snack", form.snack.value);
-      formData.append("konzentration", form.konzentration.value);
-      formData.append("mittagspause", form.mittagspause.value);
-      formData.append("pausenwahl", form.pausenwahl.value);
-      formData.append("schulweg", form.schulweg.value);
-      formData.append("sicherheit", form.sicherheit.value);
-
-      fetch("https://script.google.com/macros/s/DEIN_WEBAPP_LINK/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: formData.toString()
-      })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("ergebnis").innerText = "✅ Erfolgreich gespeichert!";
-        form.reset();
-      })
-      .catch(error => {
-        document.getElementById("ergebnis").innerText = "❌ Fehler beim Speichern.";
-        console.error(error);
-      });
-    });
-  </script>
-
+      .highlighted{
+          background-color: #ccffcc;
+          border: 2px solid #00aa00;
+      }
+      .faded{
+          color: #888;
+          font-size: 0.9rem;
+      }
+      .question {
+          display: none;
+      }
+      .question.active {
+          display: block;
+      }
+      button {
+          padding: 0.5rem 1rem;
+          margin-top: 1rem;
+      }
+      .scale-label {
+          display: inline-block;
+          width: 30px;
+          text-align: center;
+      }
+  </style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "rhb2fxe81r");
+</script>
+<!-- Hotjar Tracking Code for Umfrage zu digitaliosierung -->
 <script>
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -135,6 +53,234 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
+</head>
+<body>
+    <h1>Kurze Umfrage zur Schulumgebung</h1>
+    <form id="surveyForm">
+        <!-- Snackautomat? -->
+        <div class="question active">
+            <label>Welche Snacks könntest du dir in einem Automaten an der Schule sehen?</label><br />
+            <select required>
+                <option value="" disabled selected hidden> Bitte auswählen </option>
+                <option value="gesund"> Gesunde Snacks (empfohlen)</option>
+                <option value="suess">Süßigkeiten</option>
+                <option value="salzig">Salzige Snacks</option>
+                <option value="regional">Regionale Produkte</option>
+            </select><br />
+              <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
 
+        <div class="question">
+            <label>Wie sehr bist du davon überzeugt, dass gesunde Snacks deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
+                <span class="scale-label faded">1</span>
+                <input type="range" name="konzentration" min="1" max="10" value="8" data-moved="false" />
+                <span class="scale-label highlighted">10</span><br />
+                <button type="button" onclick="nextQuestion()">Weiter</button></div>
+        <div class="question">
+            <label>Wie lange sollte die Mittagspause sein?</label><br />
+           <select required>
+  <option value="" disabled hidden>Bitte auswählen</option>
+  <option value="30" selected style="background:#e0ffe0;">30 min. (empfohlen)</option>
+  <option value="40">40 min.</option>
+  <option value="45">45 min.</option>
+  <option value="50">50 min.</option>
+</select><br />
+             <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
+
+        <div class="question">
+  <label>Würdest du lieber kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
+  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt gut!</button>
+  <span id="reveal" style="display:inline-block;">
+    <a href="#" onclick="document.getElementById('no-btn').style.display='inline'; this.style.display='none'; return false;" style="margin-left:1em; font-size:0.9em;">Weitere Optionen anzeigen</a>
+  </span>
+  <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein, Pausen sind wichtig!</button>
+</div>
+        
+        <div class="question">
+          <label> Wie kommst du normalerweise durch Rochlitz?</label><br /><select required>
+            <option value="" disabled selected hidden>Bitte auswählen</option>
+            <option value="fuss">Zu Fuß (sehr gesund)</option>
+            <option value="ras">Mit dem Fahrrad (sehr gesund)</option>
+            <option value="bus">Mit dem Bus</option>
+            <option value="auto"> Mit dem Auto</option>
+          </select><br />
+                  <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
+        <div class="question">
+          <label>Du fühlst dich sicher auf deinem Schulweg, oder?</label><br />
+            <span class="scale-label faded">1</span>
+            <input type="range" name="sicherheit" min="1" max="10" value="5" data-moved="false" />
+            <span class="scale-label highlighted">10</span><br />
+            <small> 1 = unsicher, 10 = sehr sicher</small><br />
+            <small>Die meisten Kinder fühlen sich sicher.</small>
+                    <button type="button" onclick="nextQuestion()">Weiter</button>
+        </div>
+        <div class="question">
+          <p>Vielen Dank für deine Teilnahme!</p>
+          <p class="faded">Diese Umfrage ist Teil meines Schulprojektes zum Thema Dark Patterns.</p>
+        </div>      
+    </form>
+<script>
+let current = 0;
+const questions = document.querySelectorAll(".question");
+
+const answers = {
+  snack: "",
+  konzentration: "",
+  mittagspause: "",
+  pausenwahl: "",
+  schulweg: "",
+  sicherheit: ""
+};
+
+function attachRangeListener(element) {
+  if (element) {
+    element.addEventListener("input", () => {
+      element.dataset.moved = "true";
+    }, { once: true });
+  }
+}
+
+function nextQuestion() {
+  const currentElement = questions[current];
+
+  // Validierung
+  const select = currentElement.querySelector("select");
+  if (select && !select.value) {
+    alert("Bitte wähle eine Option aus.");
+    return;
+  }
+
+  const range = currentElement.querySelector("input[type='range']");
+  if (range && range.dataset.moved !== "true") {
+    alert("Bitte bewege den Regler.");
+    return;
+  }
+
+  if (currentElement.querySelectorAll(".answer").length && !currentElement.dataset.answered) {
+    alert("Bitte wähle eine Option aus.");
+    return;
+  }
+
+  // Antworten speichern
+  if (select) {
+    if (current === 0) answers.snack = select.value;
+    if (current === 2) answers.mittagspause = select.value;
+    if (current === 4) answers.schulweg = select.value;
+  }
+
+  if (range) {
+    if (current === 1) answers.konzentration = range.value;
+    if (current === 5) answers.sicherheit = range.value;
+  }
+
+  if (current === 3 && currentElement.dataset.answered) {
+    const selectedBtn = currentElement.querySelector("[data-selected='true']");
+    if (selectedBtn) answers.pausenwahl = selectedBtn.textContent;
+  }
+
+  if (current < questions.length - 1) {
+    questions[current].classList.remove("active");
+    current++;
+    questions[current].classList.add("active");
+
+    const newRange = questions[current].querySelector("input[type='range']");
+    attachRangeListener(newRange);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Clarity & Hotjar
+    if (typeof clarity === "function") {
+      clarity("set", "section", "frage_" + current);
+    }
+    if (typeof hj === "function") {
+      hj("stateChange", "/umfrage/frage_" + current);
+    }
+
+   
+}
+}
+function markAnswered(button){
+
+  const parent = button.closest(".question");
+  parent.dataset.answered = "true";
+  parent.querySelectorAll(".answer").forEach(btn => btn.removeAttribute("data-selected"));
+  button.setAttribute("data-selected", "true");
+  nextQuestion();
+}
+
+// Initiale Range-Listener setzen
+questions.forEach(q => {
+  const range = q.querySelector("input[type='range']");
+  attachRangeListener(range);
+});
+</script>
+  <script>
+// Cookie-Banner anzeigen, wenn noch nicht akzeptiert
+window.addEventListener('load', function () {
+  if (!localStorage.getItem('cookiesAccepted')) {
+    document.getElementById('cookie-popup').style.display = 'block';
+  }
+});
+
+function acceptCookies() {
+  localStorage.setItem('cookiesAccepted', 'true');
+  document.getElementById('cookie-popup').style.display = 'none';
+}
+    fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: new URLSearchParams({
+    snack: "",
+    konzentration: "answers.snack",
+    mittagspause: "answers.kozentration",
+    pausenwahl: "answers.mittagspause",
+    schulweg: "answers.schulweg",
+    sicherheit: "answers.sicherheit"
+  }).toString()
+})
+.then(response => response.text())
+.then(result => {
+  console.log("Erfolg:", result);
+})
+.catch(error => {
+  console.error("Fehler:", error);
+});
+
+</script>
+
+
+
+
+  <div id="cookie-popup" style="
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    background: #fffbe7;
+    border: 1px solid #bfa500;
+    color: #514200;
+    padding: 1.5rem 1rem 1rem 1rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-size: 1rem;
+    display: none;
+">
+    <strong>Hinweis zur Datenerfassung:</strong><br>
+    Zu Analysezwecken wird jede deiner Bewegungen auf dieser Seite erfasst und ausgewertet. Dies unterstützt meine komplexe Leistung. :)<br>
+    <button onclick="acceptCookies()" style="
+        margin-top: 1rem;
+        background: #ffe066;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    ">Verstanden</button>
+</div>
 </body>
 </html>
