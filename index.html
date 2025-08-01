@@ -245,6 +245,7 @@ function acceptCookies() {
 .catch(error => {
   console.error("Fehler:", error);
 });
+    function sendAnswers(){
   fetch("https://script.google.com/macros/s/AKfycbx2tiY67bePCb-DqqSUxdJmmMXTPZk5YPEHUaBZCccRhjSQnI7JXkezwhczv6gS7Bci/exec", {
   method: "POST",
   headers: {
@@ -259,6 +260,14 @@ function acceptCookies() {
     sicherheit: answers.sicherheit
   }).toString()
 })
+       .then(response => response.text())
+  .then(result => {
+    console.log("Antwort gesendet:", result);
+  })
+  .catch(error => {
+    console.error("Fehler beim Senden:", error);
+  });
+}
 </script>
 
 
