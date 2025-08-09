@@ -58,12 +58,12 @@
     <h1>Kurze Umfrage zur Schulumgebung</h1>
     <form id="surveyForm">
         <div class="question active">
-            <label>Welche dieser Komunikationsarten denkst du ist am Sinnvollsten?</label><br />
+            <label>Welche dieser Kommunikationsarten ist am sinnvollsten?</label><br />
             <select required>
                 <option value="" disabled selected hidden> Bitte auswählen </option>
                 <option value="gespraech"> Persönliches Gespräch (empfohlen)</option>
                 <option value="e-mail">E-Mails</option>
-                <option value="kurznachicht">Kurznachichten</option>
+                <option value="kurznachicht">Kurznachrichten</option>
                 <option value="briefe">Briefe</option>
              
             </select><br />
@@ -71,17 +71,17 @@
         </div>
 
         <div class="question">
-            <label>Wie sehr bist du davon überzeugt, dass der konsum von Traubenzucker deine Konzentrationsfähigkeit erhöht? 1=Kaum;10=Sehr </label><br />
+            <label>Wie sehr bist du davon überzeugt, dass der Konsum von Traubenzucker deine Konzentrationsfähigkeit erhöht? 1=Kaum;10=Sehr </label><br />
                 <span class="scale-label faded">1</span>
                 <input type="range" name="konzentration" min="1" max="10" value="8" data-moved="false" />
                 <span class="scale-label highlighted">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
         <div class="question">
-            <label>Was würdest du an einem Regnerichen Sonntag am liebsten machen?</label><br />
+            <label>Was würdest du an einem regnerichen Sonntag bevorzugt machen?</label><br />
            <select required>
   <option value="" disabled hidden>Bitte auswählen</option>
   <option value="informatik lernen" selected style="background:#e0ffe0;">für Informatik lernen (empfohlen)</option>
-  <option value="rausgehen">Draussen Spielen</option>
+  <option value="rausgehen">draussen spielen</option>
   <option value="lesen">ein Buch lesen</option>
   <option value="videospiele">Videospiele spielen</option>
        
@@ -90,8 +90,8 @@
         </div>
 
         <div class="question">
-  <label>Liest du dir die Inhalte von Cookies auf Websiten durch bevor du sie akzeptierst?</label><br />
-  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja tue ich, da dies sehr Wichtig ist!</button>
+  <label>Liest du dir die Inhalte von Cookies auf Websiten durch, bevor Du sie akzeptierst?</label><br />
+  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja tue ich, da dies sehr wichtig ist!</button>
   <span id="reveal" style="display:inline-block;">
     <a href="#" onclick="document.getElementById('no-btn').style.display='inline'; this.style.display='none'; return false;" style="margin-left:1em; font-size:0.9em;">Weitere Optionen anzeigen</a>
   </span>
@@ -100,9 +100,9 @@
 </div>
         
         <div class="question">
-          <label>Wenn du für den Rest deines Lebens Nur noch eine Sportart ausführen könntest, währe diese</label><br /><select required>
+          <label>Wenn du für den Rest deines Lebens nur noch eine Sportart ausführen könntest, wäre diese</label><br /><select required>
             <option value="" disabled selected hidden>Bitte auswählen</option>
-            <option value="anstrengend.u.gesund">sehr anstrengend aber sehr Gesund</option>
+            <option value="anstrengend.u.gesund">sehr anstrengend, aber sehr gesund</option>
             <option value="leicht.u.gesund">sehr leicht und gesund</option>
             <option value="anstrengend">sehr anstrengend</option>
             <option value="leicht"> sehr leicht</option>
@@ -111,7 +111,7 @@
                   <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
-          <label>Wie interessant findest du es, an einem Mittwochabend einen Dokumentarfilm über Wolkenformationen zu sehen?</label><br />
+          <label>Wie interessant findest du es, an einem Mittwochabend einen Dokumentarfilm über Wolkenformationen anzusehen?</label><br />
             <span class="scale-label faded">1</span>
             <input type="range" name="wolken" min="1" max="10" value="5" data-moved="false" />
             <span class="scale-label highlighted">10</span><br />
