@@ -57,67 +57,66 @@
 <body>
     <h1>Kurze Umfrage zur Schulumgebung</h1>
     <form id="surveyForm">
-        <!-- Snackautomat? -->
         <div class="question active">
-            <label>Welche Snacks könntest du dir in einem Automaten an der Schule sehen?</label><br />
+            <label>Welche dieser Komunikationsarten denkst du ist am Sinnvollsten?</label><br />
             <select required>
                 <option value="" disabled selected hidden> Bitte auswählen </option>
-                <option value="gesund"> Gesunde Snacks (empfohlen)</option>
-                <option value="suess">Süßigkeiten</option>
-                <option value="salzig">Salzige Snacks</option>
-                <option value="regional">Regionale Produkte</option>
+                <option value="gespräch"> Persönliches Gespräch (empfohlen)</option>
+                <option value="e-mail">E-Mails</option>
+                <option value="kurznachicht">Kurznachichten</option>
+                <option value="Briefe">Briefe</option>
              
             </select><br />
               <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
 
         <div class="question">
-            <label>Wie sehr bist du davon überzeugt, dass gesunde Snacks deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
+            <label>Wie sehr bist du davon überzeugt, dass der konsum von Traubenzucker deine Konzentrationsfähigkeit erhöhen? 1=Kaum;10=Sehr </label><br />
                 <span class="scale-label faded">1</span>
                 <input type="range" name="konzentration" min="1" max="10" value="8" data-moved="false" />
                 <span class="scale-label highlighted">10</span><br />
                 <button type="button" onclick="nextQuestion()">Weiter</button></div>
         <div class="question">
-            <label>Wie lange sollte die Mittagspause sein?</label><br />
+            <label>Was würdest du an einem Regnerichen Sonntag am liebsten machen?</label><br />
            <select required>
   <option value="" disabled hidden>Bitte auswählen</option>
-  <option value="30" selected style="background:#e0ffe0;">30 min. (empfohlen)</option>
-  <option value="40">40 min.</option>
-  <option value="45">45 min.</option>
-  <option value="50">50 min.</option>
+  <option value="informatik lernen" selected style="background:#e0ffe0;">für Informatik lernen (empfohlen)</option>
+  <option value="rausgehen">Draussen Spielen</option>
+  <option value="lesen">ein Buch lesen</option>
+  <option value="videospiele">Videospiele spielen</option>
        
 </select><br />
              <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
 
         <div class="question">
-  <label>Würdest du lieber kürzere Pausen haben, wenn der Schultag dadurch früher endet?</label><br />
-  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja, klingt gut!</button>
+  <label>Liest du dir die Inhalte von Cookies auf Websiten durch bevor du sie akzeptierst?</label><br />
+  <button type="button" class="highlighted answer" onclick="markAnswered(this)">Ja tue ich, da dies sehr Wichtig ist!</button>
   <span id="reveal" style="display:inline-block;">
     <a href="#" onclick="document.getElementById('no-btn').style.display='inline'; this.style.display='none'; return false;" style="margin-left:1em; font-size:0.9em;">Weitere Optionen anzeigen</a>
   </span>
-  <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein, Pausen sind wichtig!</button>
+  <button id="no-btn" type="button" class="faded answer" style="display:none;" onclick="markAnswered(this)">Nein! Wer liest schon Cookies?</button>
         
 </div>
         
         <div class="question">
-          <label> Wie kommst du normalerweise durch Rochlitz?</label><br /><select required>
+          <label>Wenn du für den Rest deines Lebens Nur noch eine Sportart ausführen könntest, währe diese</label><br /><select required>
             <option value="" disabled selected hidden>Bitte auswählen</option>
-            <option value="fuss">Zu Fuß (sehr gesund)</option>
-            <option value="ras">Mit dem Fahrrad (sehr gesund)</option>
-            <option value="bus">Mit dem Bus</option>
-            <option value="auto"> Mit dem Auto</option>
+            <option value="anstrengend.u.gesund">sehr anstrengend aber sehr Gesund</option>
+            <option value="leicht.u.gesund">sehr leicht und gesund</option>
+            <option value="anstrengend">sehr anstrengend</option>
+            <option value="leicht"> sehr leicht</option>
           
           </select><br />
                   <button type="button" onclick="nextQuestion()">Weiter</button>
         </div>
         <div class="question">
-          <label>Du fühlst dich sicher auf deinem Schulweg, oder?</label><br />
+          <label>Wie interessant findest du es, an einem Mittwochabend einen Dokumentarfilm über Wolkenformationen zu sehen?</label><br />
             <span class="scale-label faded">1</span>
-            <input type="range" name="sicherheit" min="1" max="10" value="5" data-moved="false" />
+            <input type="range" name="Wolken" min="1" max="10" value="5" data-moved="false" />
             <span class="scale-label highlighted">10</span><br />
-            <small> 1 = unsicher, 10 = sehr sicher</small><br />
-            <small>Die meisten Kinder fühlen sich sicher.</small>
+            <small> 1 = nicht sehr interessant, 10 = sehr interessant </small><br />
+            <small>86% der Nutzer stimmten für 8 bis 10.</small>
                     <button type="button" onclick="nextQuestion()">Weiter</button>
          
         </div>
@@ -246,12 +245,12 @@ function acceptCookies() {
     "Content-Type": "application/x-www-form-urlencoded"
   },
   body: new URLSearchParams({
-    snack: answers.snack,
+    kommunikation: answers.kommunikation,
     konzentration: answers.kozentration,
-    mittagspause: answers.mittagspause,
-    pausenwahl: answers.pausenwahl,
-    schulweg: answers.schulweg,
-    sicherheit: answers.sicherheit
+    sonntag: answers.sonntag,
+    cookies: answers.cookies,
+    sport: answers.sport,
+    Wolken: answers.Wolken
   }).toString()
 })
        .then(response => response.text())
