@@ -169,19 +169,19 @@ function nextQuestion() {
 
   // Antworten speichern
   if (select) {
-    if (current === 0) answers.snack = select.value;
-    if (current === 2) answers.mittagspause = select.value;
-    if (current === 4) answers.schulweg = select.value;
+    if (current === 0) answers.kommunikation = select.value;
+    if (current === 2) answers.sonntag = select.value;
+    if (current === 4) answers.sport = select.value;
   }
 
   if (range) {
     if (current === 1) answers.konzentration = range.value;
-    if (current === 5) answers.sicherheit = range.value;
+    if (current === 5) answers.wolken = range.value;
   }
 
   if (current === 3 && currentElement.dataset.answered) {
     const selectedBtn = currentElement.querySelector("[data-selected='true']");
-    if (selectedBtn) answers.pausenwahl = selectedBtn.textContent;
+    if (selectedBtn) answers.cookies = selectedBtn.textContent;
   }
 
   if (current < questions.length - 1) {
